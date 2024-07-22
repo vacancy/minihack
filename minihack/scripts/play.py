@@ -61,6 +61,7 @@ def get_action(env, action_mode, is_raw_env):
                     action = ch
                 else:
                     action = env.actions.index(ch)
+                print('Selected action:', action, 'from', chr(ch))
                 break
             except ValueError:
                 print(
@@ -164,8 +165,10 @@ def play(
             break
 
         if is_raw_env:
+            print('RAW::Current action:', action, env.actions[action])
             obs, done = env.step(action)
         else:
+            print('WRAPPED::Current action:', action, env.actions[action])
             obs, reward, done, info = env.step(action)
         steps += 1
 

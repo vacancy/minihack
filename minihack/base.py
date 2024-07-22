@@ -15,6 +15,14 @@ from nle.env.tasks import NetHackStaircase
 from minihack.wiki import NetHackWiki
 from minihack.tiles import GlyphMapper
 
+# GETENV MINIHACK_FORCE_FULL_ACTIONS
+
+MINIHACK_FORCE_FULL_ACTIONS = int(os.getenv("MINIHACK_FORCE_FULL_ACTIONS", '1'))
+
+if MINIHACK_FORCE_FULL_ACTIONS:
+    print('Minihack::Forcing full actions.')
+
+
 PATH_DAT_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), "dat")
 LIB_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), "lib")
 PATCH_SCRIPT = os.path.join(
@@ -120,6 +128,13 @@ MH_DEFAULT_OBS_KEYS = [
     "specials_crop",
     "blstats",
     "message",
+    "tty_chars",
+    'inv_letters',
+    'inv_strs',
+    'inv_oclasses',
+    'inv_glyphs',
+    "tty_colors",
+    "tty_cursor",
 ]
 
 
@@ -263,6 +278,7 @@ class MiniHack(NetHackStaircase):
             )
         else:
             kwargs["actions"] = kwargs.pop("actions", tuple(MH_FULL_ACTIONS))
+        kwargs["actions"] = tuple(MH_FULL_ACTIONS)
 
         # Enter Wizard mode - turned off by default
         kwargs["wizard"] = kwargs.pop("wizard", False)
