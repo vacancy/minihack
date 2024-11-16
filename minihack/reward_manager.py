@@ -463,7 +463,7 @@ class RewardManager(AbstractRewardManager):
         """
         msgs = [
             f"{name} wields itself to your hand!",
-            f"{name} (weapon in hand)",
+            f"{name} (weapon in hands)",
         ]
         self._add_message_event(
             msgs, reward, repeatable, terminal_required, terminal_sufficient
